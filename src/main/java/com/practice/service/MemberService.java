@@ -1,11 +1,6 @@
 package com.practice.service;
 
 import com.practice.dao.Member;
-import com.practice.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Description;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -13,21 +8,17 @@ import java.util.Optional;
  * @author : thewayhj
  * @description: Member Service
  */
-@Service
-public class MemberService {
+public interface MemberService {
 
-    @Autowired
-    private MemberRepository memberRepository;
+    public List<Member> findAll();
 
-    public List<Member> findAll() {
-        return memberRepository.findAll();
-    }
+    public Optional<Member> findMemberInfo(String userNo);
 
-    public Optional<Member> findMemberInfo(int userId) {
-        return memberRepository.findById(userId);
-    }
+    public Member getMemberInfo(String userId);
 
-    public Member join(Member member) {
-        return memberRepository.save(member);
-    }
+    public Member join(Member member);
+
+    public Member modify(String userNo, Member member);
+
+    public void delete(String userNo);
 }

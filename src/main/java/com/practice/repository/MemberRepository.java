@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 
-    @Query("SELECT Member FROM Member WHERE userNo= :userNo")
-    Member getMemberList(@Param("userNo") String userNo);
+    @Query("SELECT M FROM Member AS M WHERE M.userId=:userId")
+    Member getMemberInfo(@Param("userId") String userId);
 }
